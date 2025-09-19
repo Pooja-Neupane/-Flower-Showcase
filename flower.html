@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Flower Showcase</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      cursor: pointer;
+      transition: background 1s ease;
+    }
+    .card {
+      position: absolute;
+      width: 500px;
+      max-width: 95%;
+      background: rgba(255,255,255,0.85);
+      border-radius: 25px;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+      opacity: 0;
+      transform: translateY(60px) scale(0.85);
+      transition: all 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    }
+    .card.active {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      z-index: 10;
+    }
+    .card img {
+      width: 350px;
+      height: 350px;
+      object-fit: cover;
+      margin-bottom: 20px;
+      border-radius: 15px;
+      transition: transform 0.6s ease;
+    }
+    .card.active img {
+      animation: float 3s ease-in-out infinite;
+    }
+    .card h3 {
+      font-size: 2em;
+      margin: 10px 0;
+      color: #222;
+    }
+    .card p {
+      font-size: 1.2em;
+      color: #333;
+    }
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0px); }
+    }
+    .hint {
+      position: absolute;
+      bottom: 30px;
+      font-size: 1em;
+      color: #222;
+      background: rgba(255,255,255,0.8);
+      padding: 8px 14px;
+      border-radius: 14px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+  </style>
+</head>
+<body style="background: linear-gradient(135deg, #ff4d6d, #ff758f);">
+  <div class="card active">
+    <img src="https://tse1.mm.bing.net/th/id/OIP.nvb60_gEI5DaY7R1xQJw7gHaIK?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Rose">
+    <h3>Rose</h3>
+    <p>Symbol of love, passion, and beauty.</p>
+  </div>
+  <div class="card">
+    <img src="https://tse4.mm.bing.net/th/id/OIP.GmtMGKyTdAI3cWRObw-6SAHaFj?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Sunflower">
+    <h3>Sunflower</h3>
+    <p>Represents happiness, loyalty, and warmth.</p>
+  </div>
+  <div class="card">
+    <img src="https://th.bing.com/th/id/R.1ce0df4a8707c135c8bc0065dc0f6fa6?rik=4kcFDoCpvNFzZQ&riu=http%3a%2f%2fgetwallpapers.com%2fwallpaper%2ffull%2f5%2fa%2ff%2f573336.jpg&ehk=ndM3O%2fVGzKLS7h%2b%2bYnkrTfL0ou%2bfht6oicukWkkPv1U%3d&risl=&pid=ImgRaw&r=0" alt="Lotus">
+    <h3>Lotus</h3>
+    <p>Symbol of purity, enlightenment, and rebirth.</p>
+  </div>
+  <div class="card">
+    <img src="https://png.pngtree.com/thumb_back/fw800/background/20240630/pngtree-single-tulip-flower-photograph-image_15830327.jpg" alt="Tulip">
+    <h3>Tulip</h3>
+    <p>Represents elegance, grace, and perfect love.</p>
+  </div>
+  <div class="card">
+    <img src="https://thumbs.dreamstime.com/b/lily-flower-studio-background-single-lily-flower-beautiful-flower-images-lily-flower-studio-background-single-lily-flower-302650786.jpg" alt="Lily">
+    <h3>Lily</h3>
+    <p>Symbol of purity, devotion, and renewal.</p>
+  </div>
+
+  <div class="hint">🌸 Click anywhere to see the next flower</div>
+
+  <script>
+    const cards = document.querySelectorAll(".card");
+    const backgrounds = [
+      "linear-gradient(135deg, #ff4d6d, #ff758f)",  // Rose
+      "linear-gradient(135deg, #ffd700, #fff176)",  // Sunflower
+      "linear-gradient(135deg, #ffb6c1, #ffdde1)",  // Lotus
+      "linear-gradient(135deg, #a29bfe, #dcd6f7)",  // Tulip
+      "linear-gradient(135deg, #ffffff, #e0e0e0)"   // Lily
+    ];
+    let current = 0;
+
+    document.body.addEventListener("click", () => {
+      cards[current].classList.remove("active");
+      current = (current + 1) % cards.length;
+      cards[current].classList.add("active");
+      document.body.style.background = backgrounds[current];
+    });
+  </script>
+</body>
+</html>
